@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>A Heart Too Big</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --overlay: rgba(0,0,0,0.45);
+      --accent:#e53935;
+      --glow: 0 20px 60px rgba(229,57,53,0.25), 0 6px 18px rgba(229,57,53,0.18);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:'Inter',system-ui,Arial,sans-serif;color:#fff}
+
+    .stage{
+      position:relative;
+      min-height:100vh;
+      background: radial-gradient(circle at top left, #1b003a, #2d006e, #040019, #0b032d);
+      background-size: 200% 200%;
+      animation: galaxyShift 20s ease-in-out infinite;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    @keyframes galaxyShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .stage::after{
+      content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1), transparent 70%), radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05), transparent 70%);pointer-events:none;
+    }
+
+    .heart-wrap{
+      position:absolute;left:50%;top:42vh;
+      transform:translate(-50%,-50%);
+      display:flex;flex-direction:column;align-items:center;gap:1.1rem;
+      z-index:3;
+      text-align:center;
+      width:100%;max-width:1200px;padding:0 24px;
+    }
+
+    .heart{
+      width:100vmin;
+      max-width:600px;min: width 90pxpx;
+      filter: drop-shadow(0 30px 60px rgba(0,0,0,0.45));
+      animation: pulse 2000ms infinite ease-in-out;
+      will-change:transform,filter;
+    }
+
+    @keyframes pulse{
+      0%{transform:translateY(0) scale(0.995)}
+      50%{transform:translateY(-6px) scale(1.04)}
+      100%{transform:translateY(0) scale(0.995)}
+    }
+
+    h1{
+      font-family:'Playfair Display',serif;
+      margin:0;font-weight:700;letter-spacing:0.4px;font-size:clamp(20px,3.2vw,36px);
+      text-shadow: 0 8px 28px rgba(0,0,0,0.5);
+    }
+    p.lead{
+      margin:0;color:rgba(255,255,255,0.92);font-size:clamp(14px,1.6vw,18px);opacity:0.95
+    }
+
+    .message-bottom{
+      position: absolute;left:50%;bottom:6vh;transform:translateX(-50%);z-index:4;width:100%;max-width:900px;padding:14px 22px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border-radius:14px;border:1px solid rgba(255,255,255,0.06);backdrop-filter: blur(6px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+      text-align:center
+    }
+
+    .message-bottom small{display:block;opacity:0.8;font-size:12px;margin-bottom:8px}
+    .world{font-weight:600;font-size:16px}
+
+    @media (max-width:640px){
+      .heart{width:120vmin}
+      .heart-wrap{top:46vh}
+      .message-bottom{bottom:4vh;padding:12px}
+    }
+
+    /* Sparkles */
+    .sparkle {
+      position: absolute;
+      background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: sparkleMove 3s linear infinite;
+    }
+
+    @keyframes sparkleMove {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      50% { opacity: 0.6; transform: translateY(-20px) scale(1.5); }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+
+    <div class="heart-wrap" aria-hidden="false">
+      <svg class="heart" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A huge red heart">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stop-color="#ff6b6b" />
+            <stop offset="55%" stop-color="#e53935" />
+            <stop offset="100%" stop-color="#b71c1c" />
+          </linearGradient>
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="18" result="blur" />
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <g filter="url(#glow)">
+          <path d="M256 448s-192-112-192-256c0-70 56-128 128-128 36 0 68 16 88 40 20-24 52-40 88-40 72 0 128 58 128 128 0 144-192 256-192 256z" fill="url(#g1)"/>
+          <path d="M160 160c28-32 74-40 96-12c24-28 68-38 100 2c28 36 20 84-18 120c-46 44-126 104-178 118c-10-34-8-102 0-160c4-28-6-44 0-78z" fill="rgba(255,255,255,0.08)"/>
+        </g>
+      </svg>
+      
+    </div>
+
+    <div class="message-bottom" role="note">
+      <h1>I love you, my princess beauty — xoxo Akan</h1>
+      <p class="lead">It isn't big enough... but I'll give you the world, if possible.</p>
+      <div class="world">Click anywhere (or tap) to let the heart pulse play once more — just for her. ❤️</div>
+    </div>
+
+    <script>
+      const heart = document.querySelector('.heart');
+      document.addEventListener('click', ()=>{
+        heart.style.animation = 'none';
+        void heart.offsetWidth;
+        heart.style.animation = '';
+      });
+
+      document.addEventListener('keydown', (e)=>{
+        if(e.code==='Space' || e.code==='Enter'){
+          heart.style.animation = 'none'; void heart.offsetWidth; heart.style.animation = '';
+        }
+      });
+
+      // Sparkles generation
+      const stage = document.querySelector('.stage');
+      for(let i=0;i<40;i++){
+        const s=document.createElement('div');
+        s.classList.add('sparkle');
+        s.style.left=Math.random()*100+'%';
+        s.style.top=Math.random()*100+'%';
+        s.style.animationDelay=(Math.random()*3)+'s';
+        s.style.animationDuration=(2+Math.random()*3)+'s';
+        stage.appendChild(s);
+      }
+    </script>
+  </div>
+</body>
+</html>
